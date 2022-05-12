@@ -37,6 +37,10 @@ dependencies:
   flutter_signin_button: ^2.0.0
   easy_actions: ^1.0.0
   swipeable_button_view: ^0.0.2
+  flutter_downloader: ^1.7.3
+  dio: ^4.0.6
+  path_provider: ^2.0.10
+  open_file: ^3.2.1
 
 dev_dependencies:
   flutter_test:
