@@ -5,9 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_awesome_design/May12_2022/Swipable_button_view2/screen_after_swipe.dart';
 import 'package:swipeable_button_view/swipeable_button_view.dart';
 
-class HomeScreen2Btn3 extends StatelessWidget {
-  HomeScreen2Btn3({Key? key}) : super(key: key);
+class HomeScreen2Btn3 extends StatefulWidget {
+  const HomeScreen2Btn3({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen2Btn3> createState() => _HomeScreen2Btn3State();
+}
+
+class _HomeScreen2Btn3State extends State<HomeScreen2Btn3> {
   bool isFinished = false;
+
   @override
   Widget build(BuildContext context) {
     log('Call Buildermethod');

@@ -5,8 +5,8 @@ import 'custom_carousel_slider.dart';
 import 'custom_neumorphism_button_design.dart';
 
 class NeuMorphismBtn2HomeScreen extends StatelessWidget {
-  NeuMorphismBtn2HomeScreen({Key? key}) : super(key: key);
-  List<String> iconsList = [
+  const NeuMorphismBtn2HomeScreen({Key? key}) : super(key: key);
+  static List<String> iconsList = [
     'assets/icons/health.png',
     'assets/icons/destination.png',
     'assets/icons/wealth.png',
@@ -17,7 +17,7 @@ class NeuMorphismBtn2HomeScreen extends StatelessWidget {
     'assets/icons/airplane.png',
     'assets/icons/people.png'
   ];
-  List<String> ringImages = [
+  static List<String> ringImages = [
     'assets/images/ring1.jpg',
     'assets/images/CoupleRing1.jpg',
     'assets/images/ring2.jpg',
@@ -34,8 +34,8 @@ class NeuMorphismBtn2HomeScreen extends StatelessWidget {
       length: 3,
       child: Scaffold(
         backgroundColor: const Color(0xffe3ebed),
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(125),
+        appBar: const PreferredSize(
+          preferredSize: Size.fromHeight(125),
           child: CustomAppBarBtn2(),
         ),
         body: Container(

@@ -6,9 +6,17 @@ import 'package:flutter/material.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 
-class FlutterDownloaderHomeScreen extends StatelessWidget {
-  FlutterDownloaderHomeScreen({Key? key}) : super(key: key);
-  bool indicater = false;
+class FlutterDownloaderHomeScreen extends StatefulWidget {
+  const FlutterDownloaderHomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<FlutterDownloaderHomeScreen> createState() =>
+      _FlutterDownloaderHomeScreenState();
+}
+
+class _FlutterDownloaderHomeScreenState
+    extends State<FlutterDownloaderHomeScreen> {
+  bool indicator = false;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +29,7 @@ class FlutterDownloaderHomeScreen extends StatelessWidget {
             children: [
               StatefulBuilder(
                 builder: (context, setState) {
-                  return indicater
+                  return indicator
                       ? const CircularProgressIndicator(
                           strokeWidth: 5,
                           color: Colors.white,
@@ -30,7 +38,7 @@ class FlutterDownloaderHomeScreen extends StatelessWidget {
                       : ElevatedButton(
                           onPressed: () async {
                             setState(() {
-                              indicater = true;
+                              indicator = true;
                             });
                             log('Download & Open Btn pressed');
                             await openFile(
@@ -38,7 +46,7 @@ class FlutterDownloaderHomeScreen extends StatelessWidget {
                                     'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_2mb.mp4',
                                 fileName: 'myVideo.mp4');
                             setState(() {
-                              indicater = false;
+                              indicator = false;
                             });
                           },
                           child: const Text('Download & Open'),

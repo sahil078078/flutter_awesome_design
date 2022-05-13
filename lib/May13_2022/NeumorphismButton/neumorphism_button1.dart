@@ -3,8 +3,8 @@ import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 
 class NeuMorphismBtn1 extends StatefulWidget {
-  NeuMorphismBtn1({required this.title, Key? key}) : super(key: key);
-  String title;
+  const NeuMorphismBtn1({required this.title, Key? key}) : super(key: key);
+  final String title;
 
   @override
   State<NeuMorphismBtn1> createState() => _NeuMorphismBtn1State();

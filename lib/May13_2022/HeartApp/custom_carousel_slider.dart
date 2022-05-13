@@ -2,13 +2,13 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class CustomCarouselSlider extends StatelessWidget {
-  CustomCarouselSlider({
+  const CustomCarouselSlider({
     required this.items,
     required this.height,
     Key? key,
   }) : super(key: key);
-  List<String> items;
-  double height;
+  final List<String> items;
+  final double height;
   @override
   Widget build(BuildContext context) {
     return CarouselSlider(

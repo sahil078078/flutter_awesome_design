@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_awesome_design/May13_2022/BeumorphismButton2/custom_button.dart';
-import 'package:flutter_awesome_design/May13_2022/BeumorphismButton2/custom_carousel_slider.dart';
+
+import '../../HeartApp/custom_carousel_slider.dart';
+import '../custom_button.dart';
 
 class FavoritePage extends StatelessWidget {
-  FavoritePage({Key? key}) : super(key: key);
+  const FavoritePage({Key? key}) : super(key: key);
 
-  List<String> favImages = [
+  static List<String> favImages = [
     'assets/favorite/fav1.jpg',
     'assets/favorite/fav2.jpg',
     'assets/favorite/fav3.jpg',

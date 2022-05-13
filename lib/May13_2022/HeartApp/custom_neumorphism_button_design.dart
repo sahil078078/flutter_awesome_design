@@ -3,11 +3,11 @@ import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 
 class CustomNeumorphismBtnDesign extends StatefulWidget {
-  CustomNeumorphismBtnDesign({
+  const CustomNeumorphismBtnDesign({
     required this.iconString,
     Key? key,
   }) : super(key: key);
-  String iconString;
+  final String iconString;
 
   @override
   State<CustomNeumorphismBtnDesign> createState() =>

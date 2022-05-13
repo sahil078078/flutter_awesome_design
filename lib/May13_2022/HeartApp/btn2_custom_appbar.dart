@@ -2,17 +2,18 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_awesome_design/May13_2022/BeumorphismButton2/Pages/favorite_page.dart';
-import 'package:flutter_awesome_design/May13_2022/BeumorphismButton2/Pages/home_page.dart';
-import 'package:flutter_awesome_design/May13_2022/BeumorphismButton2/Pages/setting_page.dart';
+
+import '../HeartApp/Pages/setting_page.dart';
+import '../HeartApp/Pages/favorite_page.dart';
+import '../HeartApp//Pages/home_page.dart';
 
 class CustomAppBarBtn2 extends StatelessWidget {
-  CustomAppBarBtn2({
+  const CustomAppBarBtn2({
     Key? key,
   }) : super(key: key);
-  List<Widget> pages = [
+  static List<Widget> pages = [
     const HomePage(),
-    FavoritePage(),
+    const FavoritePage(),
     const SettingPage(),
   ];
 
