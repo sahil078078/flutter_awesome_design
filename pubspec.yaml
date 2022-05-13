@@ -41,6 +41,10 @@ dependencies:
   dio: ^4.0.6
   path_provider: ^2.0.10
   open_file: ^3.2.1
+  google_fonts: ^2.3.2
+  flutter_inset_box_shadow: ^1.0.8
+  flutter_svg: ^1.0.3
+
 
 dev_dependencies:
   flutter_test:
@@ -63,6 +67,7 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:
