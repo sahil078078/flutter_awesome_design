@@ -44,6 +44,7 @@ dependencies:
   google_fonts: ^2.3.2
   flutter_inset_box_shadow: ^1.0.8
   flutter_svg: ^1.0.3
+  carousel_slider: ^4.1.1
 
 
 dev_dependencies:
@@ -67,7 +68,10 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-
+  assets:
+   - assets/images/
+   - assets/icons/
+   - assets/favorite/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
