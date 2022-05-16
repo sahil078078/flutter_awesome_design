@@ -45,6 +45,11 @@ dependencies:
   flutter_inset_box_shadow: ^1.0.8
   flutter_svg: ^1.0.3
   carousel_slider: ^4.1.1
+  flutter_colorpicker: ^1.0.3
+  share_plus: ^4.0.4
+  http: ^0.13.4
+  file_picker: ^4.5.1
+  image_picker: ^0.8.5+3
 
 
 dev_dependencies:

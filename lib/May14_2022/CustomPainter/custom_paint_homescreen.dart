@@ -13,6 +13,7 @@ import 'Pages/rectangle2_page.dart';
 import 'Pages/rectangle3_page.dart';
 import 'Pages/rounded_corner.dart';
 import 'Pages/sword_page.dart';
+import 'Pages/curve_page.dart';
 
 class CustomPaintHomeScreen extends StatelessWidget {
   const CustomPaintHomeScreen({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class CustomPaintHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 13,
+      length: 14,
       child: Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
@@ -93,6 +94,10 @@ class CustomPaintHomeScreen extends StatelessWidget {
                 icon: Icon(Icons.format_shapes),
                 text: 'Sword',
               ),
+              Tab(
+                icon: Icon(Icons.timeline_outlined),
+                text: 'Curve',
+              ),
             ],
           ),
         ),
@@ -111,6 +116,7 @@ class CustomPaintHomeScreen extends StatelessWidget {
             ROundedCornerPage(),
             HalfMoonPage(),
             SwordPage(),
+            CurvePage(),
           ],
         ),
       ),
