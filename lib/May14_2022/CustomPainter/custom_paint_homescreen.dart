@@ -7,9 +7,12 @@ import 'package:flutter_awesome_design/May14_2022/CustomPainter/Pages/rounded_re
 import 'package:flutter_awesome_design/May14_2022/CustomPainter/Pages/triangle_page.dart';
 
 import 'Pages/arc2_page.dart';
+import 'Pages/half_moon.dart';
 import 'Pages/line_rounded_page.dart';
 import 'Pages/rectangle2_page.dart';
 import 'Pages/rectangle3_page.dart';
+import 'Pages/rounded_corner.dart';
+import 'Pages/sword_page.dart';
 
 class CustomPaintHomeScreen extends StatelessWidget {
   const CustomPaintHomeScreen({Key? key}) : super(key: key);
@@ -17,7 +20,7 @@ class CustomPaintHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 10,
+      length: 13,
       child: Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
@@ -78,6 +81,18 @@ class CustomPaintHomeScreen extends StatelessWidget {
                 icon: Icon(Icons.change_history),
                 text: 'Triangle',
               ),
+              Tab(
+                icon: Icon(Icons.rounded_corner_outlined),
+                text: 'RoundedCorner',
+              ),
+              Tab(
+                icon: Icon(Icons.brightness_2_outlined),
+                text: 'HalfMoon',
+              ),
+              Tab(
+                icon: Icon(Icons.format_shapes),
+                text: 'Sword',
+              ),
             ],
           ),
         ),
@@ -93,6 +108,9 @@ class CustomPaintHomeScreen extends StatelessWidget {
             ArcPage(),
             Arc2Page(),
             TrianglePage(),
+            ROundedCornerPage(),
+            HalfMoonPage(),
+            SwordPage(),
           ],
         ),
       ),

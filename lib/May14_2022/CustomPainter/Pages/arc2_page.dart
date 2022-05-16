@@ -106,7 +106,7 @@ class Arc2Paint extends CustomPainter {
     arc8.moveTo(size.width * 0.5, size.height * 0.1);
     arc8.arcToPoint(
       Offset(size.width * 0.1, size.height * 0.5),
-      radius: Radius.circular(250),
+      radius: const Radius.circular(250),
     );
 
     canvas.drawPath(arc5, paint2);
