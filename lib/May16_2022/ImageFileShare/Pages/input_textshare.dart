@@ -2,10 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:share_plus/share_plus.dart';
 
-class InputTxtShare extends StatelessWidget {
-  InputTxtShare({Key? key}) : super(key: key);
+class InputTxtShare extends StatefulWidget {
+  const InputTxtShare({Key? key}) : super(key: key);
+
+  @override
+  State<InputTxtShare> createState() => _InputTxtShareState();
+}
+
+class _InputTxtShareState extends State<InputTxtShare> {
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
+
   TextEditingController inputText = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

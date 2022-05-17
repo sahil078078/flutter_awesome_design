@@ -75,12 +75,12 @@ class ShareFiles extends StatelessWidget {
             ],
           ),
         ),
-        body: TabBarView(
+        body: const TabBarView(
           children: [
-            const TextSharePage(),
+            TextSharePage(),
             InputTxtShare(),
-            const ImageSharePage(),
-            const VideoSharePage(),
+            ImageSharePage(),
+            VideoSharePage(),
           ],
         ),
       ),
