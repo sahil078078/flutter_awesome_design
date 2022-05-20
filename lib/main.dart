@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'May19_2022/RefreshIndicatorWidget/refresh_indicator_homescreen2.dart';
+import 'May19_2022/fetchDataFromApi/Practice1/fetch_data_homescreen1.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: RefreshIndicatorHomeScreen2(),
+      home: FetchDataHomeScreen1(),
     );
   }
 }
