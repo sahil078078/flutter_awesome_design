@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_awesome_design/May20_2022/ApiGetPostDelete/API_Stuff/CollectionClass.dart';
 import 'package:flutter_awesome_design/May20_2022/ApiGetPostDelete/Models/custom_carousel_slider_for_fashion.dart';
 
 import 'Models/category_list_scroller.dart';
