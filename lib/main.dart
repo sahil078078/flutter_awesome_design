@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'May20_2022/ApiGetPostDelete/api_get_post_delete_homescreen.dart';
+import 'package:flutter_awesome_design/May25_2022/GetDataFromAPI_GoogleSheet/getdata_from_api_google_sheet_homescreen.dart';
+import 'May26_2022/LanguageChange/lang_change_homescreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ApiGetPostDeleteHomeScreen(),
+      home: GetDataFromGoogleSheet(),
     );
   }
 }
