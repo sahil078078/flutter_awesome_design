@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_awesome_design/June3_2022/Simple_Api_calling/fetchDatafunction.dart';
 
+import 'fetchDatafunction.dart';
 import 'modal_class.dart';
 
 class ProviderForGetData extends ChangeNotifier {

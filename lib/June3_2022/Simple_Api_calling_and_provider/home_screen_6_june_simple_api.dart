@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_awesome_design/June3_2022/Simple_Api_calling/provider_getdata.dart';
+import 'package:flutter_awesome_design/June3_2022/Simple_Api_calling_and_provider/provider_getdata.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
