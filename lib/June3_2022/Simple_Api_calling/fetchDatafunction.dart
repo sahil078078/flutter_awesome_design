@@ -22,9 +22,12 @@ Future<ModalClass> fetchData3june1() async {
     log("statusCode : ${response.statusCode}");
     if (response.statusCode == 200) {
       return ModalClass.fromJson(temp);
-    } else {}
+    } else {
+      throw Exception('Failed to fetch data');
+    }
   } catch (e) {
     log('catch part : $e');
+    throw Exception('Failed to fetch data');
   }
 
   return modalClass;

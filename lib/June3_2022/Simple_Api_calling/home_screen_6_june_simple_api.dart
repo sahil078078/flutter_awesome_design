@@ -25,9 +25,8 @@ class _HomeScreen6JuneSimpleAPICallingState
 
   @override
   Widget build(BuildContext context) {
-    final postData = Provider.of<ProviderForGetData>(context, listen: false);
-    final indexSelectProvider =
-        Provider.of<SelectCategoryIndex>(context, listen: false);
+    final postData = Provider.of<ProviderForGetData>(context);
+    final indexSelectProvider = Provider.of<SelectCategoryIndex>(context);
 
     // for watching and reflect change
     context.watch<SelectCategoryIndex>();
@@ -49,121 +48,127 @@ class _HomeScreen6JuneSimpleAPICallingState
           ),
         ),
       ),
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 15,
-              right: 15,
-              top: 5,
-              bottom: 5,
-            ),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              physics: const BouncingScrollPhysics(),
-              child: Row(
-                children: List.generate(
-                  postData.modalClass.data.length,
-                  (index) => GestureDetector(
-                    onTap: () {
-                      indexSelectProvider.getCategoryIndex(index: index);
-                      log(indexSelectProvider.selectCategoryIndex.toString());
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.only(right: 10),
-                      width: 150,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        gradient: const LinearGradient(
-                          colors: [
-                            Color(0xffe0857f),
-                            Color(0xffeabbbc),
-                          ],
-                        ),
-                        border: Border.all(
-                          color:
-                              index == indexSelectProvider.selectCategoryIndex
-                                  ? Colors.black
-                                  : Colors.black12,
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          postData.modalClass.data
-                              .elementAt(index)
-                              .category
-                              .name,
+      body: postData.isLoading
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 15,
+                    right: 15,
+                    top: 5,
+                    bottom: 5,
+                  ),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    physics: const BouncingScrollPhysics(),
+                    child: Row(
+                      children: List.generate(
+                        postData.modalClass.data.length,
+                        (index) => GestureDetector(
+                          onTap: () {
+                            indexSelectProvider.getCategoryIndex(index: index);
+                            log(indexSelectProvider.selectCategoryIndex
+                                .toString());
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.only(right: 10),
+                            width: 150,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              gradient: const LinearGradient(
+                                colors: [
+                                  Color(0xffe0857f),
+                                  Color(0xffeabbbc),
+                                ],
+                              ),
+                              border: Border.all(
+                                color: index ==
+                                        indexSelectProvider.selectCategoryIndex
+                                    ? Colors.black
+                                    : Colors.black12,
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                postData.modalClass.data
+                                    .elementAt(index)
+                                    .category
+                                    .name,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ),
-          ),
-          Expanded(
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Column(
-                children: [
-                  ListView.builder(
-                    shrinkWrap: true,
+                Expanded(
+                  child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
-                    itemCount: postData.modalClass.data.length,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        margin: const EdgeInsets.only(
-                          left: 15,
-                          right: 15,
-                          bottom: 8,
-                          top: 10,
+                    child: Column(
+                      children: [
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: postData.modalClass.data.length,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              margin: const EdgeInsets.only(
+                                left: 15,
+                                right: 15,
+                                bottom: 8,
+                                top: 10,
+                              ),
+                              padding: const EdgeInsets.only(
+                                top: 15,
+                                left: 20,
+                                right: 10,
+                                bottom: 15,
+                              ),
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(
+                                  color:
+                                      indexSelectProvider.selectCategoryIndex ==
+                                              index
+                                          ? Colors.black
+                                          : Colors.black12,
+                                  width: 0.65,
+                                ),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(postData.modalClass.data
+                                      .elementAt(index)
+                                      .title),
+                                  Text(
+                                      'name : ${postData.modalClass.data.elementAt(index).category.name}'),
+                                  Text(
+                                      'desc : ${postData.modalClass.data.elementAt(index).description}'),
+                                  Text(
+                                      'price : ${postData.modalClass.data.elementAt(index).price}'),
+                                  Text(
+                                      'CreatorBy : ${postData.modalClass.data.elementAt(index).createdBy.name}'),
+                                  Text(
+                                      'slug : ${postData.modalClass.data.elementAt(index).category.slug}'),
+                                ],
+                              ),
+                            );
+                          },
                         ),
-                        padding: const EdgeInsets.only(
-                          top: 15,
-                          left: 20,
-                          right: 10,
-                          bottom: 15,
-                        ),
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(
-                            color:
-                                indexSelectProvider.selectCategoryIndex == index
-                                    ? Colors.black
-                                    : Colors.black12,
-                            width: 0.65,
-                          ),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(postData.modalClass.data
-                                .elementAt(index)
-                                .title),
-                            Text(
-                                'name : ${postData.modalClass.data.elementAt(index).category.name}'),
-                            Text(
-                                'desc : ${postData.modalClass.data.elementAt(index).description}'),
-                            Text(
-                                'price : ${postData.modalClass.data.elementAt(index).price}'),
-                            Text(
-                                'CreatorBy : ${postData.modalClass.data.elementAt(index).createdBy.name}'),
-                            Text(
-                                'slug : ${postData.modalClass.data.elementAt(index).category.slug}'),
-                          ],
-                        ),
-                      );
-                    },
+                      ],
+                    ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
     );
   }
 }

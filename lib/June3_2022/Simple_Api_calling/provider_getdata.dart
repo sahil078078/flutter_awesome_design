@@ -7,6 +7,7 @@ class ProviderForGetData extends ChangeNotifier {
   late ModalClass modalClass;
 
   bool isLoading = false;
+  // use for best ux experience but i don't used now this time
 
   getPostData(context) async {
     isLoading = true;
