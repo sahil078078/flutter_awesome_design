@@ -12,14 +12,11 @@ class FetchDataHomeScreen1 extends StatefulWidget {
 
 class _FetchDataHomeScreen1State extends State<FetchDataHomeScreen1> {
   @override
-  Future<UserInfo>? _getData;
-
-  @override
   void initState() {
     super.initState();
-    _getData = fetchData();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(

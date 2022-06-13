@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_awesome_design/May14_2022/CustomPainter/Pages/arc_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen6June2 extends StatelessWidget {
