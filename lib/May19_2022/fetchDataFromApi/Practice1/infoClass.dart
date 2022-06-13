@@ -4,17 +4,17 @@ import 'package:http/http.dart' as http;
 
 class UserInfo {
   final int page;
-  final int per_page;
+  final int perPage;
   final int total;
-  final int total_pages;
+  final int totalPages;
   final List<Data> data;
   final Support support;
 
   UserInfo({
     required this.page,
-    required this.per_page,
+    required this.perPage,
     required this.total,
-    required this.total_pages,
+    required this.totalPages,
     required this.data,
     required this.support,
   });
@@ -22,9 +22,9 @@ class UserInfo {
   factory UserInfo.fromJson(Map<String, dynamic> json) {
     return UserInfo(
       page: json['page'],
-      per_page: json['per_page'],
+      perPage: json['per_page'],
       total: json['total'],
-      total_pages: json['total_pages'],
+      totalPages: json['total_pages'],
       data: List<Data>.from(json['data'].map((x) => Data.fromJson(x))),
       support: Support.fromJson(json['support']),
     );
@@ -34,15 +34,15 @@ class UserInfo {
 class Data {
   final int id;
   final String email;
-  final String first_name;
-  final String last_name;
+  final String firstName;
+  final String lastName;
   final String avatar;
 
   Data({
     required this.id,
     required this.email,
-    required this.first_name,
-    required this.last_name,
+    required this.firstName,
+    required this.lastName,
     required this.avatar,
   });
 
@@ -50,8 +50,8 @@ class Data {
     return Data(
       id: json['id'],
       email: json['email'],
-      first_name: json['first_name'],
-      last_name: json['last_name'],
+      firstName: json['first_name'],
+      lastName: json['last_name'],
       avatar: json['avatar'],
     );
   }

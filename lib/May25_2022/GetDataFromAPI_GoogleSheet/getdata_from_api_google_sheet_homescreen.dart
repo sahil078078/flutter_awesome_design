@@ -81,7 +81,7 @@ class _GetDataFromGoogleSheetState extends State<GetDataFromGoogleSheet> {
                             ),
                           ),
                           Text(
-                            snapshot.data![index].c_name,
+                            snapshot.data![index].cName,
                             style: GoogleFonts.nunito(color: Colors.black54),
                           ),
                         ],

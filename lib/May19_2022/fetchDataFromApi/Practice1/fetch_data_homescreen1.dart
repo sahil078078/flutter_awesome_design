@@ -91,9 +91,9 @@ class _FetchDataHomeScreen1State extends State<FetchDataHomeScreen1> {
                         Text(
                             'email ID : ${snapshot.data!.data.elementAt(index).email}'),
                         Text(
-                            'F_Name : ${snapshot.data!.data.elementAt(index).first_name}'),
+                            'F_Name : ${snapshot.data!.data.elementAt(index).firstName}'),
                         Text(
-                            'L_Name : ${snapshot.data!.data.elementAt(index).last_name}')
+                            'L_Name : ${snapshot.data!.data.elementAt(index).lastName}')
                       ],
                     ),
                   ],

@@ -5,13 +5,13 @@ import 'package:http/http.dart' as http;
 
 class GetData {
   final int id;
-  final String name, c_name, m_no;
+  final String name, cName, m_no;
   final String? arrived, arrivedTime;
 
   GetData({
     required this.id,
     required this.name,
-    required this.c_name,
+    required this.cName,
     required this.m_no,
     required this.arrived,
     required this.arrivedTime,
@@ -21,7 +21,7 @@ class GetData {
     return GetData(
       id: json['id'],
       name: json['name'],
-      c_name: json['c_name'],
+      cName: json['c_name'],
       m_no: json['m_no'].toString(),
       arrived: json['arrived'].toString(),
       arrivedTime: json['arrivedTime'],
