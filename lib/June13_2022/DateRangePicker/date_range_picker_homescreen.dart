@@ -26,7 +26,7 @@ class DateRangePicker extends StatelessWidget {
           ),
         ),
       ),
-      body: DateRangeBody(),
+      body: const DateRangeBody(),
     );
   }
 }

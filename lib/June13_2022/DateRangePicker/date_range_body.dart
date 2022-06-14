@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,6 +20,9 @@ class _DateRangeBodyState extends State<DateRangeBody> {
   Widget build(BuildContext context) {
     final start = dateRange.start;
     final end = dateRange.end;
+    final difference = dateRange.duration;
+    // find diffrenece netween day
+
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -35,9 +41,10 @@ class _DateRangeBodyState extends State<DateRangeBody> {
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.45,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: pickedDateRange,
                   child: Text(
-                    '${start.day} - ${start.month} - ${start.year}',
+                    // '${start.day} - ${start.month} - ${start.year}',
+                    DateFormat('dd MMM yyyy').format(start),
                     style: GoogleFonts.poppins(
                       fontSize: 17,
                     ),
@@ -52,23 +59,45 @@ class _DateRangeBodyState extends State<DateRangeBody> {
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.45,
                 child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text(
-                      '${end.day} - ${end.month} - ${end.year}',
-                      style: GoogleFonts.poppins(
-                        fontSize: 17,
-                      ),
+                  onPressed: () {},
+                  child: Text(
+                    // '${end.day} - ${end.month} - ${end.year}',
+                    DateFormat('dd MMM yyyy').format(end),
+                    style: GoogleFonts.poppins(
+                      fontSize: 17,
                     ),
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                        Colors.black,
-                      ),
-                    )),
+                  ),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                      Colors.black,
+                    ),
+                  ),
+                ),
               ),
             ],
+          ),
+          Text(
+            "Difference : ${difference.inDays} days",
+            style: GoogleFonts.poppins(
+              fontWeight: FontWeight.w500,
+              fontSize: 18,
+            ),
           ),
         ],
       ),
     );
+  }
+
+  Future pickedDateRange() async {
+    DateTimeRange? newDateRange = await showDateRangePicker(
+      context: context,
+      firstDate: DateTime(0000), // minimum date we can select
+      lastDate: DateTime(3000), // maximum date we can select
+      initialDateRange: dateRange,
+    );
+
+    if (newDateRange == null) return; // id pressed 'Cancel'
+
+    setState(() => dateRange = newDateRange);
   }
 }
