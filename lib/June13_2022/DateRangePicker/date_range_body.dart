@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,7 +19,7 @@ class _DateRangeBodyState extends State<DateRangeBody> {
     final start = dateRange.start;
     final end = dateRange.end;
     final difference = dateRange.duration;
-    // find diffrenece netween day
+    // find difference between day
 
     return Center(
       child: Column(
