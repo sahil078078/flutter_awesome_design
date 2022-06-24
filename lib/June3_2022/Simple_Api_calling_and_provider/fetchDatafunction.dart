@@ -30,5 +30,5 @@ Future<ModalClass> fetchData3june1() async {
     throw Exception('Failed to fetch data');
   }
 
-  return modalClass;
+  // return modalClass;
 }
