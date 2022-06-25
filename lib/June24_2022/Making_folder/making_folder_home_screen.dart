@@ -35,7 +35,7 @@ class MakingFolderHomeScreen extends StatelessWidget {
                 elevation: 0.0,
               ),
               onPressed: () async {
-                const folderName = '24-06-2022';
+                const folderName = 'MyNewFolder';
                 String name = await createFolder(folderName: folderName);
                 log('name : $name');
               },
@@ -61,7 +61,7 @@ class MakingFolderHomeScreen extends StatelessWidget {
     //     '/$folderName');
 
     // below code is creat folder at desire location
-    final dir = Directory("/storage/emulated/0/$folderName");
+    final dir = Directory("/storage/emulated/0/Download/$folderName");
 
     var status = await Permission.storage.status;
     log("stausrunTypeType : ${status.runtimeType}");
@@ -76,19 +76,5 @@ class MakingFolderHomeScreen extends StatelessWidget {
       dir.create();
       return dir.path;
     }
-
-    // String newPath = '';
-    // List<String> folders = dir.path.split('/');
-    // for (int x = 1; x < folders.length; x++) {
-    //   String folder = folders[x];
-    //   if (folder != 'Android') {
-    //     newPath += '/' + folder;
-    //   } else {
-    //     break;
-    //   }
-    // }
-    // // newPath = newPath + '/$folderName';
-    //
-    // return newPath;
   }
 }

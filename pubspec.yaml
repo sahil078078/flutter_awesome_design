@@ -69,6 +69,15 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.9.3  # fot appIcon launch
+  # also below code for launch flutter
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/awesome.jpg"  
+  adaptive_icon_foreground: "assets/logo_forground.png" # this is for forground icon
+  adaptive_icon_background: "#ffffff" # you can also used image
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
