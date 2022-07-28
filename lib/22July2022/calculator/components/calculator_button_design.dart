@@ -1,10 +1,23 @@
-
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_awesome_design/22July2022/calculator/components/calculator_sharedpref.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CalculatorButtonDesign extends StatefulWidget {
-  const CalculatorButtonDesign({Key? key}) : super(key: key);
+  final String? buttonName;
+  final double? width, height;
+  final TextStyle? textStyle;
+  final Widget? child;
+  const CalculatorButtonDesign({
+    Key? key,
+    this.buttonName,
+    this.height,
+    this.width,
+    this.textStyle,
+    this.child,
+  })  : assert(child == null || buttonName == null,
+            'child == null || buttonName == null is not true ,\nPlease use only one ether child or buttonName'),
+        super(key: key);
 
   @override
   State<CalculatorButtonDesign> createState() => _CalculatorButtonDesignState();
@@ -51,8 +64,8 @@ class _CalculatorButtonDesignState extends State<CalculatorButtonDesign>
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 100),
-        width: 110,
-        height: 110,
+        width: widget.width ?? MediaQuery.of(context).size.width * 0.19,
+        height: widget.height ?? MediaQuery.of(context).size.height * 0.095,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: const Color(0xffecf0f3),
@@ -92,6 +105,19 @@ class _CalculatorButtonDesignState extends State<CalculatorButtonDesign>
                   ),
                 ]
               : [],
+        ),
+        child: Center(
+          child: widget.child ??
+              Text(
+                widget.buttonName!,
+                style: widget.textStyle ??
+                    GoogleFonts.montserrat(
+                      fontSize: 23,
+                      fontWeight: FontWeight.w600,
+                      color: const Color(0xff00c3f5),
+                    ),
+                textAlign: TextAlign.center,
+              ),
         ),
       ),
     );

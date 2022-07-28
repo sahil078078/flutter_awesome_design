@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_awesome_design/22July2022/calculator/components/calculator_sharedpref.dart';
 import 'package:flutter_awesome_design/27July2022/sharedprefrences/get_map.dart';
 import 'package:provider/provider.dart';
 
@@ -94,6 +93,8 @@ idk(BuildContext context) async {
       (e) => Company.fromJson(e),
     ),
   ).toList(growable: true);
+
+  log('com : $com');
   // log('decoder : $decode');
 
   // log('=======> ${com.elementAt(1).type}');

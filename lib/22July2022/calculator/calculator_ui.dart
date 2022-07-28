@@ -33,16 +33,16 @@ class _CalculatorUIState extends State<CalculatorUI> {
       body: Padding(
         padding: const EdgeInsets.only(
           top: 30,
-          left: 13,
-          right: 13,
+          left: 15,
+          right: 15,
           bottom: 10,
         ),
         child: Column(
           children: <Widget>[
             Container(
-              margin: const EdgeInsets.only(bottom: 5),
+              margin: EdgeInsets.only(bottom: size.height * 0.015),
               width: size.width,
-              height: size.height * 0.1,
+              height: size.height * 0.135,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
@@ -52,8 +52,74 @@ class _CalculatorUIState extends State<CalculatorUI> {
               ),
             ),
             const CalculatorController(),
-            const SizedBox(height: 20),
-            const CalculatorButtonDesign(),
+            // SizedBox(height: size.height * 0.03),
+            const Spacer(flex: 3),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                CalculatorButtonDesign(buttonName: 'AC'),
+                CalculatorButtonDesign(buttonName: '+/-'),
+                CalculatorButtonDesign(buttonName: '%'),
+                CalculatorButtonDesign(buttonName: '/'),
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                top: MediaQuery.of(context).size.height * 0.023,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  CalculatorButtonDesign(buttonName: '7'),
+                  CalculatorButtonDesign(buttonName: '8'),
+                  CalculatorButtonDesign(buttonName: '9'),
+                  CalculatorButtonDesign(buttonName: 'x'),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                top: MediaQuery.of(context).size.height * 0.023,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  CalculatorButtonDesign(buttonName: '4'),
+                  CalculatorButtonDesign(buttonName: '5'),
+                  CalculatorButtonDesign(buttonName: '6'),
+                  CalculatorButtonDesign(buttonName: '-'),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                top: MediaQuery.of(context).size.height * 0.023,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  CalculatorButtonDesign(buttonName: '1'),
+                  CalculatorButtonDesign(buttonName: '2'),
+                  CalculatorButtonDesign(buttonName: '3'),
+                  CalculatorButtonDesign(buttonName: '+'),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                top: MediaQuery.of(context).size.height * 0.023,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  CalculatorButtonDesign(buttonName: '0'),
+                  CalculatorButtonDesign(buttonName: '.'),
+                  CalculatorButtonDesign(buttonName: '3'),
+                  CalculatorButtonDesign(buttonName: 'DEL'),
+                ],
+              ),
+            ),
+            const Spacer(flex: 1),
           ],
         ),
       ),
