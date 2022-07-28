@@ -1,13 +1,17 @@
+import 'dart:developer';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_awesome_design/22July2022/calculator/components/calculator_provider.dart';
 import 'package:flutter_awesome_design/22July2022/calculator/components/calculator_sharedpref.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class CalculatorButtonDesign extends StatefulWidget {
   final String? buttonName;
   final double? width, height;
   final TextStyle? textStyle;
   final Widget? child;
+  final double? textSize;
   const CalculatorButtonDesign({
     Key? key,
     this.buttonName,
@@ -15,6 +19,7 @@ class CalculatorButtonDesign extends StatefulWidget {
     this.width,
     this.textStyle,
     this.child,
+    this.textSize,
   })  : assert(child == null || buttonName == null,
             'child == null || buttonName == null is not true ,\nPlease use only one ether child or buttonName'),
         super(key: key);
@@ -47,6 +52,11 @@ class _CalculatorButtonDesignState extends State<CalculatorButtonDesign>
 
   @override
   Widget build(BuildContext context) {
+    bool isDark =
+        Provider.of<CalculatorProvider>(context, listen: true).isDarkMode;
+
+    log('isDark : $isDark');
+
     return Listener(
       onPointerUp: (valUp) {
         if (sharedPref.isSound) {
@@ -70,41 +80,76 @@ class _CalculatorButtonDesignState extends State<CalculatorButtonDesign>
           borderRadius: BorderRadius.circular(10),
           color: const Color(0xffecf0f3),
           border: Border.all(
-            color: !isPresse
-                ? Colors.black.withOpacity(0.1)
-                : Colors.black.withOpacity(0.065),
+            color: isDark
+                ? !isPresse
+                    ? Colors.white.withOpacity(0.2)
+                    : Colors.white.withOpacity(0.075)
+                : !isPresse
+                    ? Colors.black.withOpacity(0.1)
+                    : Colors.black.withOpacity(0.065),
           ),
-          gradient: LinearGradient(
-            end: Alignment.topLeft,
-            begin: Alignment.bottomRight,
-            colors: isPresse
-                ? [
-                    //  this color is for convax effect in button
-                    const Color(0xfffdffff),
-                    const Color(0xffdbdfe3),
-                  ]
-                : [
-                    //  this is for when button is down i don't wanna any effect
-                    const Color(0xffecf0f3),
-                    const Color(0xffecf0f3),
-                  ],
-          ),
-          boxShadow: isPresse
-              ? [
-                  BoxShadow(
-                    offset: const Offset(8, 8),
-                    color: Colors.grey[300]!,
-                    blurRadius: 8,
-                    spreadRadius: 2,
-                  ),
-                  BoxShadow(
-                    offset: const Offset(-8, -8),
-                    color: Colors.white.withOpacity(0.85),
-                    blurRadius: 8,
-                    spreadRadius: 2,
-                  ),
-                ]
-              : [],
+          gradient: isDark
+              ? LinearGradient(
+                  end: Alignment.topLeft,
+                  begin: Alignment.bottomRight,
+                  colors: isPresse
+                      ? [
+                          const Color(0xff151515),
+                          const Color(0xff515151),
+                        ]
+                      : [
+                          const Color(0xff333333),
+                          const Color(0xff333333),
+                        ],
+                )
+              : LinearGradient(
+                  end: Alignment.topLeft,
+                  begin: Alignment.bottomRight,
+                  colors: isPresse
+                      ? [
+                          //  this color is for convax effect in button
+                          const Color(0xfffdffff),
+                          const Color(0xffdbdfe3),
+                        ]
+                      : [
+                          //  this is for when button is down i don't wanna any effect
+                          const Color(0xffecf0f3),
+                          const Color(0xffecf0f3),
+                        ],
+                ),
+          boxShadow: isDark
+              ? isPresse
+                  ? [
+                      const BoxShadow(
+                        offset: Offset(8, 8),
+                        color: Color(0xff151515),
+                        blurRadius: 8,
+                        spreadRadius: 2,
+                      ),
+                      const BoxShadow(
+                        offset: Offset(-8, -8),
+                        color: Color(0xff515151),
+                        blurRadius: 8,
+                        spreadRadius: 2,
+                      ),
+                    ]
+                  : []
+              : isPresse
+                  ? [
+                      BoxShadow(
+                        offset: const Offset(8, 8),
+                        color: Colors.grey[300]!,
+                        blurRadius: 8,
+                        spreadRadius: 2,
+                      ),
+                      BoxShadow(
+                        offset: const Offset(-8, -8),
+                        color: Colors.white.withOpacity(0.85),
+                        blurRadius: 8,
+                        spreadRadius: 2,
+                      ),
+                    ]
+                  : [],
         ),
         child: Center(
           child: widget.child ??
@@ -112,9 +157,11 @@ class _CalculatorButtonDesignState extends State<CalculatorButtonDesign>
                 widget.buttonName!,
                 style: widget.textStyle ??
                     GoogleFonts.montserrat(
-                      fontSize: 23,
+                      fontSize: widget.textSize ?? 23,
                       fontWeight: FontWeight.w600,
-                      color: const Color(0xff00c3f5),
+                      color: isDark
+                          ? const Color(0xffff9b42)
+                          : const Color(0xff00c3f5),
                     ),
                 textAlign: TextAlign.center,
               ),

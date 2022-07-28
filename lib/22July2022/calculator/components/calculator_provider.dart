@@ -7,13 +7,13 @@ class CalculatorProvider extends ChangeNotifier {
 
   buttonSoundSetting({required bool isSound}) {
     isButtonSound = isSound;
-    sharedPref.isSound = isButtonSound;
+    sharedPref.isSound = isSound;
     notifyListeners();
   }
 
   darkModeSetting({required bool isDark}) {
     isDarkMode = isDark;
-    sharedPref.isDark = isDarkMode;
+    sharedPref.isDark = isDark;
     notifyListeners();
   }
 }

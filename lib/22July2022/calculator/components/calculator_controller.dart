@@ -1,11 +1,9 @@
 import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-
 import 'calculator_provider.dart';
 
 class CalculatorController extends StatelessWidget {
@@ -15,17 +13,22 @@ class CalculatorController extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDark = context.watch<CalculatorProvider>().isDarkMode;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
           children: [
-            const Icon(
+            Icon(
               CupertinoIcons.speaker_3_fill,
               size: 27.5,
+              color: isDark ? Colors.white : Colors.black,
             ),
             const SizedBox(width: 7),
             CupertinoSwitch(
+              activeColor:
+                  isDark ? const Color(0xffff9b42) : const Color(0xff00c3f5),
+              trackColor: Colors.grey[300]!,
               dragStartBehavior: DragStartBehavior.start,
               value: context.watch<CalculatorProvider>().isButtonSound,
               onChanged: (isSound) {
@@ -43,7 +46,7 @@ class CalculatorController extends StatelessWidget {
           width: 150,
           height: 32,
           decoration: BoxDecoration(
-            color: Colors.grey.shade400,
+            color: isDark ? Colors.white : Colors.grey.shade400,
             borderRadius: BorderRadius.circular(5.5),
           ),
           child: Row(

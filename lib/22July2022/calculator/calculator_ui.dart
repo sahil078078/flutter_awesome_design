@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_awesome_design/22July2022/calculator/components/calculator_button_design.dart';
 import 'package:flutter_awesome_design/22July2022/calculator/components/custom_appbar.dart';
-
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'components/calculator_controller.dart';
+import 'components/calculator_provider.dart';
 import 'components/calculator_sharedpref.dart';
 
 class CalculatorUI extends StatefulWidget {
@@ -24,8 +26,11 @@ class _CalculatorUIState extends State<CalculatorUI> {
 
   @override
   Widget build(BuildContext context) {
+    bool isDark =
+        Provider.of<CalculatorProvider>(context, listen: true).isDarkMode;
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: isDark ? const Color(0xff595959) : Colors.white,
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(0),
         child: CustomAppbar(),
@@ -44,6 +49,9 @@ class _CalculatorUIState extends State<CalculatorUI> {
               width: size.width,
               height: size.height * 0.135,
               decoration: BoxDecoration(
+                color: isDark
+                    ? const Color.fromARGB(255, 220, 230, 233)
+                    : Colors.white,
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
                   color: Colors.black.withOpacity(0.2),
@@ -69,11 +77,20 @@ class _CalculatorUIState extends State<CalculatorUI> {
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  CalculatorButtonDesign(buttonName: '7'),
-                  CalculatorButtonDesign(buttonName: '8'),
-                  CalculatorButtonDesign(buttonName: '9'),
-                  CalculatorButtonDesign(buttonName: 'x'),
+                children: [
+                  CalculatorButtonDesign(
+                    buttonName: '7',
+                    textStyle: buttonTextStyle(isDark: isDark),
+                  ),
+                  CalculatorButtonDesign(
+                    buttonName: '8',
+                    textStyle: buttonTextStyle(isDark: isDark),
+                  ),
+                  CalculatorButtonDesign(
+                    buttonName: '9',
+                    textStyle: buttonTextStyle(isDark: isDark),
+                  ),
+                  const CalculatorButtonDesign(buttonName: 'x'),
                 ],
               ),
             ),
@@ -83,11 +100,23 @@ class _CalculatorUIState extends State<CalculatorUI> {
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  CalculatorButtonDesign(buttonName: '4'),
-                  CalculatorButtonDesign(buttonName: '5'),
-                  CalculatorButtonDesign(buttonName: '6'),
-                  CalculatorButtonDesign(buttonName: '-'),
+                children: [
+                  CalculatorButtonDesign(
+                    buttonName: '4',
+                    textStyle: buttonTextStyle(isDark: isDark),
+                  ),
+                  CalculatorButtonDesign(
+                    buttonName: '5',
+                    textStyle: buttonTextStyle(isDark: isDark),
+                  ),
+                  CalculatorButtonDesign(
+                    buttonName: '6',
+                    textStyle: buttonTextStyle(isDark: isDark),
+                  ),
+                  const CalculatorButtonDesign(
+                    buttonName: '-',
+                    textSize: 36,
+                  ),
                 ],
               ),
             ),
@@ -97,11 +126,20 @@ class _CalculatorUIState extends State<CalculatorUI> {
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  CalculatorButtonDesign(buttonName: '1'),
-                  CalculatorButtonDesign(buttonName: '2'),
-                  CalculatorButtonDesign(buttonName: '3'),
-                  CalculatorButtonDesign(buttonName: '+'),
+                children: [
+                  CalculatorButtonDesign(
+                    buttonName: '1',
+                    textStyle: buttonTextStyle(isDark: isDark),
+                  ),
+                  CalculatorButtonDesign(
+                    buttonName: '2',
+                    textStyle: buttonTextStyle(isDark: isDark),
+                  ),
+                  CalculatorButtonDesign(
+                    buttonName: '3',
+                    textStyle: buttonTextStyle(isDark: isDark),
+                  ),
+                  const CalculatorButtonDesign(buttonName: '+'),
                 ],
               ),
             ),
@@ -111,11 +149,20 @@ class _CalculatorUIState extends State<CalculatorUI> {
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  CalculatorButtonDesign(buttonName: '0'),
-                  CalculatorButtonDesign(buttonName: '.'),
-                  CalculatorButtonDesign(buttonName: '3'),
-                  CalculatorButtonDesign(buttonName: 'DEL'),
+                children: [
+                  CalculatorButtonDesign(
+                    buttonName: '0',
+                    textStyle: buttonTextStyle(isDark: isDark),
+                  ),
+                  CalculatorButtonDesign(
+                    buttonName: '.',
+                    textStyle: buttonTextStyle(isDark: isDark),
+                  ),
+                  const CalculatorButtonDesign(
+                    buttonName: 'DEL',
+                    textSize: 15.5,
+                  ),
+                  const CalculatorButtonDesign(buttonName: '='),
                 ],
               ),
             ),
@@ -125,4 +172,12 @@ class _CalculatorUIState extends State<CalculatorUI> {
       ),
     );
   }
+}
+
+TextStyle buttonTextStyle({required bool isDark}) {
+  return GoogleFonts.montserrat(
+    fontSize: 23,
+    fontWeight: FontWeight.w600,
+    color: isDark ? Colors.white : Colors.black.withOpacity(0.52),
+  );
 }
