@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_awesome_design/22July2022/calculator/components/calculator_button_design.dart';
 import 'package:flutter_awesome_design/22July2022/calculator/components/custom_appbar.dart';
@@ -24,6 +26,7 @@ class _CalculatorUIState extends State<CalculatorUI> {
     });
   }
 
+  String inputValue = '';
   @override
   Widget build(BuildContext context) {
     bool isDark =
@@ -45,9 +48,11 @@ class _CalculatorUIState extends State<CalculatorUI> {
         child: Column(
           children: <Widget>[
             Container(
+              padding:
+                  EdgeInsets.all(MediaQuery.of(context).size.width * 0.025),
               margin: EdgeInsets.only(bottom: size.height * 0.015),
               width: size.width,
-              height: size.height * 0.135,
+              height: size.height * 0.142,
               decoration: BoxDecoration(
                 color: isDark
                     ? const Color.fromARGB(255, 220, 230, 233)
@@ -58,17 +63,47 @@ class _CalculatorUIState extends State<CalculatorUI> {
                   width: 0.85,
                 ),
               ),
+              child: Text(
+                inputValue.isNotEmpty
+                    ? (inputValue.length < 37
+                        ? inputValue
+                        : inputValue.substring(0, 36))
+                    : '0',
+                // we controle maxLengh upto 36 character only
+                overflow: TextOverflow.clip,
+                style: GoogleFonts.nunito(
+                  color: Colors.black,
+                  fontSize: size.height * 0.045,
+                ),
+                maxLines: 2,
+              ),
             ),
             const CalculatorController(),
             // SizedBox(height: size.height * 0.03),
             const Spacer(flex: 3),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                CalculatorButtonDesign(buttonName: 'AC'),
-                CalculatorButtonDesign(buttonName: '+/-'),
-                CalculatorButtonDesign(buttonName: '%'),
-                CalculatorButtonDesign(buttonName: '/'),
+              children: [
+                CalculatorButtonDesign(
+                  buttonName: 'AC',
+                  onPressed: () {
+                    setState(() {
+                      inputValue = '0';
+                    });
+                  },
+                ),
+                CalculatorButtonDesign(
+                  buttonName: '+/-',
+                  onPressed: () {},
+                ),
+                CalculatorButtonDesign(
+                  buttonName: '%',
+                  onPressed: () {},
+                ),
+                CalculatorButtonDesign(
+                  buttonName: '/',
+                  onPressed: () {},
+                ),
               ],
             ),
             Padding(
@@ -81,16 +116,39 @@ class _CalculatorUIState extends State<CalculatorUI> {
                   CalculatorButtonDesign(
                     buttonName: '7',
                     textStyle: buttonTextStyle(isDark: isDark),
+                    onPressed: () {
+                      setState(() {
+                        inputValue = inputValue + '7';
+                      });
+                    },
                   ),
                   CalculatorButtonDesign(
                     buttonName: '8',
                     textStyle: buttonTextStyle(isDark: isDark),
+                    onPressed: () {
+                      setState(() {
+                        inputValue = inputValue + '8';
+                      });
+                    },
                   ),
                   CalculatorButtonDesign(
                     buttonName: '9',
                     textStyle: buttonTextStyle(isDark: isDark),
+                    onPressed: () {
+                      setState(() {
+                        inputValue = inputValue + '9';
+                      });
+                    },
                   ),
-                  const CalculatorButtonDesign(buttonName: 'x'),
+                  CalculatorButtonDesign(
+                    buttonName: 'x',
+                    onPressed: () {
+                      calculatorLogic(inputString: inputValue);
+                      setState(() {
+                        inputValue = '';
+                      });
+                    },
+                  ),
                 ],
               ),
             ),
@@ -104,18 +162,34 @@ class _CalculatorUIState extends State<CalculatorUI> {
                   CalculatorButtonDesign(
                     buttonName: '4',
                     textStyle: buttonTextStyle(isDark: isDark),
+                    onPressed: () {
+                      setState(() {
+                        inputValue = inputValue + '4';
+                      });
+                    },
                   ),
                   CalculatorButtonDesign(
                     buttonName: '5',
                     textStyle: buttonTextStyle(isDark: isDark),
+                    onPressed: () {
+                      setState(() {
+                        inputValue = inputValue + '5';
+                      });
+                    },
                   ),
                   CalculatorButtonDesign(
                     buttonName: '6',
                     textStyle: buttonTextStyle(isDark: isDark),
+                    onPressed: () {
+                      setState(() {
+                        inputValue = inputValue + '6';
+                      });
+                    },
                   ),
-                  const CalculatorButtonDesign(
+                  CalculatorButtonDesign(
                     buttonName: '-',
                     textSize: 36,
+                    onPressed: () {},
                   ),
                 ],
               ),
@@ -130,16 +204,34 @@ class _CalculatorUIState extends State<CalculatorUI> {
                   CalculatorButtonDesign(
                     buttonName: '1',
                     textStyle: buttonTextStyle(isDark: isDark),
+                    onPressed: () {
+                      setState(() {
+                        inputValue = inputValue + '1';
+                      });
+                    },
                   ),
                   CalculatorButtonDesign(
                     buttonName: '2',
                     textStyle: buttonTextStyle(isDark: isDark),
+                    onPressed: () {
+                      setState(() {
+                        inputValue = inputValue + '2';
+                      });
+                    },
                   ),
                   CalculatorButtonDesign(
                     buttonName: '3',
                     textStyle: buttonTextStyle(isDark: isDark),
+                    onPressed: () {
+                      setState(() {
+                        inputValue = inputValue + '3';
+                      });
+                    },
                   ),
-                  const CalculatorButtonDesign(buttonName: '+'),
+                  CalculatorButtonDesign(
+                    buttonName: '+',
+                    onPressed: () {},
+                  ),
                 ],
               ),
             ),
@@ -153,16 +245,43 @@ class _CalculatorUIState extends State<CalculatorUI> {
                   CalculatorButtonDesign(
                     buttonName: '0',
                     textStyle: buttonTextStyle(isDark: isDark),
+                    onPressed: () {
+                      setState(() {
+                        inputValue = inputValue + '0';
+                      });
+                    },
                   ),
                   CalculatorButtonDesign(
                     buttonName: '.',
                     textStyle: buttonTextStyle(isDark: isDark),
+                    onPressed: () {
+                      if (!inputValue.contains('.')) {
+                        setState(() {
+                          inputValue = inputValue + '.';
+                        });
+                      }
+                    },
                   ),
-                  const CalculatorButtonDesign(
+                  CalculatorButtonDesign(
                     buttonName: 'DEL',
                     textSize: 15.5,
+                    onPressed: () {
+                      setState(() {
+                        inputValue = inputValue.substring(
+                          0,
+                          inputValue.length - 1 > 0 ? inputValue.length - 1 : 0,
+                        );
+                      });
+
+                      log('');
+                    },
                   ),
-                  const CalculatorButtonDesign(buttonName: '='),
+                  CalculatorButtonDesign(
+                    buttonName: '=',
+                    onPressed: () {
+                      calculatorLogic(inputString: inputValue);
+                    },
+                  ),
                 ],
               ),
             ),
@@ -180,4 +299,8 @@ TextStyle buttonTextStyle({required bool isDark}) {
     fontWeight: FontWeight.w600,
     color: isDark ? Colors.white : Colors.black.withOpacity(0.52),
   );
+}
+
+void calculatorLogic({required String inputString}) {
+  double num1 = double.parse(inputString);
 }

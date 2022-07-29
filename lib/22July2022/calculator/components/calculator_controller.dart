@@ -32,7 +32,7 @@ class CalculatorController extends StatelessWidget {
               dragStartBehavior: DragStartBehavior.start,
               value: context.watch<CalculatorProvider>().isButtonSound,
               onChanged: (isSound) {
-                log('onChange : $isSound');
+                log('onChangeSound : $isSound');
                 context
                     .read<CalculatorProvider>()
                     .buttonSoundSetting(isSound: isSound);

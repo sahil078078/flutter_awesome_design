@@ -12,7 +12,9 @@ class CalculatorButtonDesign extends StatefulWidget {
   final TextStyle? textStyle;
   final Widget? child;
   final double? textSize;
+  final VoidCallback onPressed;
   const CalculatorButtonDesign({
+    required this.onPressed,
     Key? key,
     this.buttonName,
     this.height,
@@ -31,7 +33,7 @@ class CalculatorButtonDesign extends StatefulWidget {
 class _CalculatorButtonDesignState extends State<CalculatorButtonDesign>
     with WidgetsBindingObserver {
   AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer();
-  bool isPresse = true;
+  bool isPresse = false;
 
   @override
   void initState() {
@@ -55,8 +57,6 @@ class _CalculatorButtonDesignState extends State<CalculatorButtonDesign>
     bool isDark =
         Provider.of<CalculatorProvider>(context, listen: true).isDarkMode;
 
-    log('isDark : $isDark');
-
     return Listener(
       onPointerUp: (valUp) {
         if (sharedPref.isSound) {
@@ -71,6 +71,7 @@ class _CalculatorButtonDesignState extends State<CalculatorButtonDesign>
         setState(() {
           isPresse = false;
         });
+        widget.onPressed();
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 100),
