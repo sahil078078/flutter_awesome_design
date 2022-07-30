@@ -1,24 +1,24 @@
 import 'dart:core';
 
-import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPref {
-  SharedPreferences? _prefs;
-  void init({required BuildContext context}) async {
+  static SharedPreferences? _prefs;
+  
+   init() async {
     _prefs = await SharedPreferences.getInstance();
   }
 
   // getter
-  bool get isSound => _prefs?.getBool('soundKey') ?? false;
-  bool get isDark => _prefs?.getBool('darkMode') ?? false;
+  bool get isSound => _prefs!.getBool('soundKey') ?? false;
+  bool get isDark => _prefs!.getBool('darkMode') ?? false;
   // setter
-  set isSound(value) {
-    _prefs?.setBool('soundKey', value);
+  set isSound(bool value) {
+    _prefs!.setBool('soundKey', value);
   }
 
-  set isDark(value) {
-    _prefs?.setBool('darkMode', value);  
+  set isDark(bool value) {
+    _prefs!.setBool('darkMode', value);
   }
 }
 

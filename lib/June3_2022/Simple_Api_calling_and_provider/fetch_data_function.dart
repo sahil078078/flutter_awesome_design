@@ -6,11 +6,11 @@ import 'modal_class.dart';
 Future<ModalClass> fetchData3june1() async {
   String url = 'https://api.storerestapi.com/products';
   // beloved modal class for return in case of try catch will failed
-  ModalClass modalClass = ModalClass(
-    status: 404,
-    message: 'failed',
-    data: [],
-  );
+  // ModalClass modalClass = ModalClass(
+  //   status: 404,
+  //   message: 'failed',
+  //   data: [],
+  // );
   try {
     final response = await http.get(Uri.parse(url));
     final temp = jsonDecode(response.body);

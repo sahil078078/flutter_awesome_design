@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../API_Stuff/CollectionClass.dart';
+import '../API_Stuff/collection_class.dart';
 
 class ShopListViewDesign extends StatefulWidget {
   const ShopListViewDesign({Key? key}) : super(key: key);

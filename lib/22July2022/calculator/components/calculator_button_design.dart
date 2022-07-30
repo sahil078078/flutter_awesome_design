@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_awesome_design/22July2022/calculator/components/calculator_provider.dart';
@@ -33,7 +32,7 @@ class CalculatorButtonDesign extends StatefulWidget {
 class _CalculatorButtonDesignState extends State<CalculatorButtonDesign>
     with WidgetsBindingObserver {
   AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer();
-  bool isPresse = false;
+  bool isPresse = true;
 
   @override
   void initState() {
@@ -42,6 +41,8 @@ class _CalculatorButtonDesignState extends State<CalculatorButtonDesign>
     assetsAudioPlayer = AssetsAudioPlayer();
     assetsAudioPlayer.open(
       Audio('assets/audio/click2.mp3'),
+      autoStart: false,
+      playInBackground: PlayInBackground.disabledRestoreOnForeground,
     );
   }
 
@@ -52,6 +53,13 @@ class _CalculatorButtonDesignState extends State<CalculatorButtonDesign>
     assetsAudioPlayer.dispose();
   }
 
+  // static Future<void> play(SystemSoundType type) async {
+  //   await SystemChannels.platform.invokeMethod<void>(
+  //     'SystemSound.play',
+  //     type.toString(),
+  //   );
+  // }
+
   @override
   Widget build(BuildContext context) {
     bool isDark =
@@ -59,6 +67,7 @@ class _CalculatorButtonDesignState extends State<CalculatorButtonDesign>
 
     return Listener(
       onPointerUp: (valUp) {
+        // play(SystemSoundType.alert);
         if (sharedPref.isSound) {
           assetsAudioPlayer.play();
         }
@@ -137,15 +146,17 @@ class _CalculatorButtonDesignState extends State<CalculatorButtonDesign>
                   : []
               : isPresse
                   ? [
-                      BoxShadow(
-                        offset: const Offset(8, 8),
-                        color: Colors.grey[300]!,
+                      const BoxShadow(
+                        offset: Offset(8, 8),
+                        // color: Colors.grey[300]!,
+                        color: Color(0xffffffff),
                         blurRadius: 8,
                         spreadRadius: 2,
                       ),
-                      BoxShadow(
-                        offset: const Offset(-8, -8),
-                        color: Colors.white.withOpacity(0.85),
+                      const BoxShadow(
+                        offset: Offset(-5.5, -5.5),
+                        // color: Colors.white.withOpacity(0.85),
+                        color: Color(0xffced2d5),
                         blurRadius: 8,
                         spreadRadius: 2,
                       ),

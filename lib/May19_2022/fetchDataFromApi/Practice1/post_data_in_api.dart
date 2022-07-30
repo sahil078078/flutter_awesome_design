@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:flutter_awesome_design/May19_2022/fetchDataFromApi/Practice1/infoClass.dart';
+import 'package:flutter_awesome_design/May19_2022/fetchDataFromApi/Practice1/info_class.dart';
 import 'package:http/http.dart' as http;
 
 Future<Data> postData() async {

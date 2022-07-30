@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'fetchDatafunction.dart';
+import 'fetch_data_function.dart';
 import 'modal_class.dart';
 
 class ProviderForGetData extends ChangeNotifier {

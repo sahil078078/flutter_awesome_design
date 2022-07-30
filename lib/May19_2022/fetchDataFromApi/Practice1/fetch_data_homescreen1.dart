@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_awesome_design/May19_2022/fetchDataFromApi/Practice1/infoClass.dart';
+import 'package:flutter_awesome_design/May19_2022/fetchDataFromApi/Practice1/info_class.dart';
 import 'package:flutter_awesome_design/May19_2022/fetchDataFromApi/Practice1/post_data_in_api.dart';
 import 'package:google_fonts/google_fonts.dart';
 

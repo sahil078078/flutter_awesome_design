@@ -3,11 +3,12 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_awesome_design/22July2022/calculator/components/calculator_button_design.dart';
 import 'package:flutter_awesome_design/22July2022/calculator/components/custom_appbar.dart';
+import 'package:flutter_awesome_design/22July2022/calculator/helper_function/is_num_double.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'components/calculator_controller.dart';
 import 'components/calculator_provider.dart';
-import 'components/calculator_sharedpref.dart';
+import 'helper_function/button_text_style.dart';
 
 class CalculatorUI extends StatefulWidget {
   const CalculatorUI({Key? key}) : super(key: key);
@@ -17,16 +18,10 @@ class CalculatorUI extends StatefulWidget {
 }
 
 class _CalculatorUIState extends State<CalculatorUI> {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-      // befor start app we initialize sharedPred object
-      sharedPref.init(context: context);
-    });
-  }
-
   String inputValue = '';
+  double? num1, num2, result;
+  String? button;
+
   @override
   Widget build(BuildContext context) {
     bool isDark =
@@ -88,21 +83,38 @@ class _CalculatorUIState extends State<CalculatorUI> {
                   buttonName: 'AC',
                   onPressed: () {
                     setState(() {
-                      inputValue = '0';
+                      inputValue = '';
                     });
                   },
                 ),
                 CalculatorButtonDesign(
                   buttonName: '+/-',
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      // inputValue = '${double.parse(inputValue) * (-1)}';
+                      // above code work fine but 1=>1.0 given and that i don't want
+
+                      if (isDoubleNum(number: double.parse(inputValue))) {
+                        inputValue = '${double.parse(inputValue) * (-1)}';
+                      } else {
+                        inputValue = '${int.parse(inputValue) * (-1)}';
+                      }
+                    });
+
+                    log('nagative : $inputValue');
+                  },
                 ),
                 CalculatorButtonDesign(
                   buttonName: '%',
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      inputValue = "${double.parse(inputValue) * 0.01}";
+                    });
+                  },
                 ),
                 CalculatorButtonDesign(
                   buttonName: '/',
-                  onPressed: () {},
+                  onPressed: () => calculatorLogic(buttonName: '/'),
                 ),
               ],
             ),
@@ -142,12 +154,7 @@ class _CalculatorUIState extends State<CalculatorUI> {
                   ),
                   CalculatorButtonDesign(
                     buttonName: 'x',
-                    onPressed: () {
-                      calculatorLogic(inputString: inputValue);
-                      setState(() {
-                        inputValue = '';
-                      });
-                    },
+                    onPressed: () => calculatorLogic(buttonName: 'x'),
                   ),
                 ],
               ),
@@ -189,7 +196,7 @@ class _CalculatorUIState extends State<CalculatorUI> {
                   CalculatorButtonDesign(
                     buttonName: '-',
                     textSize: 36,
-                    onPressed: () {},
+                    onPressed: () => calculatorLogic(buttonName: '-'),
                   ),
                 ],
               ),
@@ -230,7 +237,7 @@ class _CalculatorUIState extends State<CalculatorUI> {
                   ),
                   CalculatorButtonDesign(
                     buttonName: '+',
-                    onPressed: () {},
+                    onPressed: () => calculatorLogic(buttonName: '+'),
                   ),
                 ],
               ),
@@ -272,15 +279,11 @@ class _CalculatorUIState extends State<CalculatorUI> {
                           inputValue.length - 1 > 0 ? inputValue.length - 1 : 0,
                         );
                       });
-
-                      log('');
                     },
                   ),
                   CalculatorButtonDesign(
                     buttonName: '=',
-                    onPressed: () {
-                      calculatorLogic(inputString: inputValue);
-                    },
+                    onPressed: () => calculatorLogic(buttonName: '='),
                   ),
                 ],
               ),
@@ -291,16 +294,73 @@ class _CalculatorUIState extends State<CalculatorUI> {
       ),
     );
   }
-}
 
-TextStyle buttonTextStyle({required bool isDark}) {
-  return GoogleFonts.montserrat(
-    fontSize: 23,
-    fontWeight: FontWeight.w600,
-    color: isDark ? Colors.white : Colors.black.withOpacity(0.52),
-  );
-}
+  void calculatorLogic({required String buttonName}) {
+    if (buttonName == 'x' ||
+        buttonName == '+' ||
+        buttonName == '-' ||
+        buttonName == '/') {
+      setState(() {
+        if (inputValue.isNotEmpty) {
+          num1 = double.parse(inputValue);
+          button = buttonName;
+          inputValue = '';
+          buttonName = '';
+        }
+      });
+      log('firstString : $num1');
+      log('afterStringValue type and length : ${inputValue.runtimeType} : ${inputValue.length}');
+    }
+    log('buttonName : $buttonName');
 
-void calculatorLogic({required String inputString}) {
-  double num1 = double.parse(inputString);
+    try {
+      if (buttonName == '=' && buttonName.isNotEmpty && inputValue.isNotEmpty) {
+        setState(() {
+          num2 = double.parse(inputValue);
+          buttonName = '';
+        });
+        log('buttonName : $buttonName');
+        log('button : $button');
+        if (button == 'x') {
+          result = num1! * num2!;
+          setState(() {
+            inputValue =
+                '${isDoubleNum(number: result!) ? result : result!.round()}';
+            button = '';
+          });
+        } else if (button == '+') {
+          result = num1! + num2!;
+          setState(() {
+            inputValue =
+                '${isDoubleNum(number: result!) ? result : result!.round()}';
+            button = '';
+          });
+        } else if (button == "-") {
+          result = num1! - num2!;
+          setState(() {
+            inputValue =
+                '${isDoubleNum(number: result!) ? result : result!.round()}';
+            button = '';
+          });
+        } else if (button == '/') {
+          try {
+            result = num1! / num2!;
+            setState(() {
+              inputValue =
+                  '${isDoubleNum(number: result!) ? result : result!.round()}';
+              button = '';
+            });
+          } catch (e) {
+            throw const Text('can\'t divide by zero');
+          }
+        }
+
+        log('num1 : $num1');
+        log('num2 : $num2');
+        log('button : $button');
+      }
+    } catch (e) {
+      throw Text('$e');
+    }
+  }
 }
