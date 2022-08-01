@@ -21,7 +21,7 @@ class _CalculatorUIState extends State<CalculatorUI> {
   String inputValue = '';
   double? num1, num2, result;
   String? button;
-
+  String? displayText;
   @override
   Widget build(BuildContext context) {
     bool isDark =
@@ -84,6 +84,7 @@ class _CalculatorUIState extends State<CalculatorUI> {
                   onPressed: () {
                     setState(() {
                       inputValue = '';
+                      displayText = inputValue;
                     });
                   },
                 ),
@@ -99,6 +100,8 @@ class _CalculatorUIState extends State<CalculatorUI> {
                       } else {
                         inputValue = '${int.parse(inputValue) * (-1)}';
                       }
+
+                      displayText = inputValue;
                     });
 
                     log('nagative : $inputValue');
@@ -109,6 +112,7 @@ class _CalculatorUIState extends State<CalculatorUI> {
                   onPressed: () {
                     setState(() {
                       inputValue = "${double.parse(inputValue) * 0.01}";
+                      displayText = inputValue;
                     });
                   },
                 ),
@@ -131,6 +135,7 @@ class _CalculatorUIState extends State<CalculatorUI> {
                     onPressed: () {
                       setState(() {
                         inputValue = inputValue + '7';
+                        displayText = inputValue;
                       });
                     },
                   ),
@@ -140,6 +145,7 @@ class _CalculatorUIState extends State<CalculatorUI> {
                     onPressed: () {
                       setState(() {
                         inputValue = inputValue + '8';
+                        displayText = inputValue;
                       });
                     },
                   ),
@@ -149,6 +155,7 @@ class _CalculatorUIState extends State<CalculatorUI> {
                     onPressed: () {
                       setState(() {
                         inputValue = inputValue + '9';
+                        displayText = inputValue;
                       });
                     },
                   ),
@@ -172,6 +179,7 @@ class _CalculatorUIState extends State<CalculatorUI> {
                     onPressed: () {
                       setState(() {
                         inputValue = inputValue + '4';
+                        displayText = inputValue;
                       });
                     },
                   ),
@@ -181,6 +189,7 @@ class _CalculatorUIState extends State<CalculatorUI> {
                     onPressed: () {
                       setState(() {
                         inputValue = inputValue + '5';
+                        displayText = inputValue;
                       });
                     },
                   ),
@@ -190,6 +199,7 @@ class _CalculatorUIState extends State<CalculatorUI> {
                     onPressed: () {
                       setState(() {
                         inputValue = inputValue + '6';
+                        displayText = inputValue;
                       });
                     },
                   ),
@@ -214,6 +224,7 @@ class _CalculatorUIState extends State<CalculatorUI> {
                     onPressed: () {
                       setState(() {
                         inputValue = inputValue + '1';
+                        displayText = inputValue;
                       });
                     },
                   ),
@@ -223,6 +234,7 @@ class _CalculatorUIState extends State<CalculatorUI> {
                     onPressed: () {
                       setState(() {
                         inputValue = inputValue + '2';
+                        displayText = inputValue;
                       });
                     },
                   ),
@@ -232,6 +244,7 @@ class _CalculatorUIState extends State<CalculatorUI> {
                     onPressed: () {
                       setState(() {
                         inputValue = inputValue + '3';
+                        displayText = inputValue;
                       });
                     },
                   ),
@@ -255,6 +268,7 @@ class _CalculatorUIState extends State<CalculatorUI> {
                     onPressed: () {
                       setState(() {
                         inputValue = inputValue + '0';
+                        displayText = inputValue;
                       });
                     },
                   ),
@@ -265,6 +279,7 @@ class _CalculatorUIState extends State<CalculatorUI> {
                       if (!inputValue.contains('.')) {
                         setState(() {
                           inputValue = inputValue + '.';
+                          displayText = inputValue;
                         });
                       }
                     },
@@ -278,6 +293,8 @@ class _CalculatorUIState extends State<CalculatorUI> {
                           0,
                           inputValue.length - 1 > 0 ? inputValue.length - 1 : 0,
                         );
+
+                        displayText = inputValue;
                       });
                     },
                   ),
@@ -327,6 +344,7 @@ class _CalculatorUIState extends State<CalculatorUI> {
             inputValue =
                 '${isDoubleNum(number: result!) ? result : result!.round()}';
             button = '';
+            displayText = "$displayText" + inputValue;
           });
         } else if (button == '+') {
           result = num1! + num2!;
@@ -334,6 +352,7 @@ class _CalculatorUIState extends State<CalculatorUI> {
             inputValue =
                 '${isDoubleNum(number: result!) ? result : result!.round()}';
             button = '';
+            displayText = "$displayText" + inputValue;
           });
         } else if (button == "-") {
           result = num1! - num2!;
@@ -341,6 +360,7 @@ class _CalculatorUIState extends State<CalculatorUI> {
             inputValue =
                 '${isDoubleNum(number: result!) ? result : result!.round()}';
             button = '';
+            displayText = "$displayText" + inputValue;
           });
         } else if (button == '/') {
           try {
@@ -349,6 +369,7 @@ class _CalculatorUIState extends State<CalculatorUI> {
               inputValue =
                   '${isDoubleNum(number: result!) ? result : result!.round()}';
               button = '';
+              displayText = "$displayText" + inputValue;
             });
           } catch (e) {
             throw const Text('can\'t divide by zero');
