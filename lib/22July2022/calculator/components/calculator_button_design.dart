@@ -37,7 +37,7 @@ class _CalculatorButtonDesignState extends State<CalculatorButtonDesign>
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
     assetsAudioPlayer = AssetsAudioPlayer();
     assetsAudioPlayer.open(
       Audio('assets/audio/click2.mp3'),
@@ -48,7 +48,7 @@ class _CalculatorButtonDesignState extends State<CalculatorButtonDesign>
 
   @override
   void dispose() {
-    WidgetsBinding.instance!.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
     assetsAudioPlayer.dispose();
   }

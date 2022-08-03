@@ -17,7 +17,7 @@ class _SharedPrefHomeScreenState extends State<SharedPrefHomeScreen> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       context.read<GetMapDataProvider>().getMapData();
     });
   }
